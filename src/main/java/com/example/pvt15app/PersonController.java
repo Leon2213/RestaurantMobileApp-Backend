@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/demo")
+@RequestMapping(path="/app")
 public class PersonController {
     @Autowired
     private PersonRepository personRepository;
@@ -29,6 +29,7 @@ public class PersonController {
         return personRepository.findAll();
     }
 
+
     @DeleteMapping(path="/delete/{id}")
     public @ResponseBody String deleteById(@PathVariable(value= "id") int id) {
         Optional<Person> p = personRepository.findById(id);
@@ -38,10 +39,6 @@ public class PersonController {
         } else {
             return "could not find person with id=" + id;
         }
-
-
-
-
 
 
     }
