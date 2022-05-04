@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/app")
+@RequestMapping()
 public class PersonController {
     @Autowired
     private PersonRepository personRepository;
