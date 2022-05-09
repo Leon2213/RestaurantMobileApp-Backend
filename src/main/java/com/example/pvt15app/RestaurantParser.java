@@ -2,7 +2,6 @@ package com.example.pvt15app;
 
 import com.example.pvt15app.Restaurant;
 import com.google.gson.*;
-import org.json.simple.JSONArray;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,23 +12,15 @@ import java.util.List;
 
 public class RestaurantParser {
     static List<Restaurant> restaurantList = new ArrayList<>();
-        URL url;
-        InputStreamReader reader;
-        JsonParser parser;
-        JsonObject jsonObject;
-        JsonArray jsonArray = new JsonArray();
+    URL url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurant&location=59.412983,18.034189&radius=250&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA");
+    InputStreamReader reader = new InputStreamReader(url.openStream());
+    private JsonParser parser = new JsonParser();
+    private JsonObject jsonObject = parser.parse(reader).getAsJsonObject();
+    private JsonArray jsonArray = jsonObject.get("results").getAsJsonArray();
 
 
     public RestaurantParser() throws IOException {
-        try {
-            this.url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurant&location=59.412983,18.034189&radius=250&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA");
-            this.reader = new InputStreamReader(url.openStream());
-            this.parser = new JsonParser();
-            this.jsonObject = parser.parse(reader).getAsJsonObject();
-            this.jsonArray = jsonObject.get("results").getAsJsonArray();
 
-        } catch (IOException exception){
-        }
     }
 
     public void startParsing(){
@@ -42,11 +33,11 @@ public class RestaurantParser {
         }
     }
 
-    private static void PrintRestaurants() {
+  /*  private static void PrintRestaurants() {
         for (Restaurant r : restaurantList) {
             System.out.println(r + "\n");
         }
-    }
+    }*/
 
     private static void parseJSONobjectAndCreateRestaurantObject(JsonElement jsonRestaurant) {
         Restaurant restaurant = new Restaurant();
