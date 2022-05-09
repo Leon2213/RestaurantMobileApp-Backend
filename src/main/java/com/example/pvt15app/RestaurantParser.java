@@ -65,9 +65,13 @@ public class RestaurantParser {
     }
 
     private static void parseAndSetOpenStatus(JsonElement jsonRestaurant, Restaurant restaurant) {
-        Optional<JsonElement> jsonRestaurantOptional = Optional.of(jsonRestaurant);
-       // jsonRestaurantOptional.ifPresent(jsonRestaurantO -> restaurant.setOpen(jsonRestaurantO.getAsJsonObject().get("opening_hours").getAsJsonObject().get("open_now").getAsBoolean()));
-        jsonRestaurantOptional.map(jsonRestaurantOO -> jsonRestaurantOO.getAsJsonObject().get("opening_hours").getAsJsonObject().get("open_now").getAsBoolean());
+        Optional<JsonElement> optionalNull = Optional.ofNullable(jsonRestaurant);
+        optionalNull.map(a -> a.getAsJsonObject())
+                .map(b -> b.get("opening_hours"))
+                .map(c -> c.getAsJsonObject())
+                .map(d -> d.get("open_now"))
+                .map(e -> e.getAsBoolean())
+                .ifPresent(f -> restaurant.setOpen(f));
 
     }
 
