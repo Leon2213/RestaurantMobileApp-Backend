@@ -15,10 +15,10 @@ public class PersonController {
     @Autowired
     private PersonRepository personRepository;
 
-    @GetMapping(path="/all")
+   /* @GetMapping(path="/all")
     public @ResponseBody Iterable<Person> getAll(){
         return personRepository.findAll();
-    }
+    }*/
 
   /*  @GetMapping(path="/findNearbyRestaurants")
     public @ResponseBody Iterable<Restaurant> getAll(@RequestParam Double l, @RequestParam Double lat, @RequestParam String restaurantType){
