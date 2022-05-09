@@ -45,7 +45,7 @@ public class PersonController {
         return String.format("Din koordinat är %s %s %s", latitude, longitude, type);
     }
 
-    @GetMapping(path="/findnearbyrestaurants2")
+    @GetMapping(path="/erik")
     public @ResponseBody List<Restaurant> returnRestaurants2 () throws IOException {
         RestaurantParser parser = new RestaurantParser();
         parser.startParsing();
