@@ -31,15 +31,15 @@ public class PersonController {
         return null;
     }*/
 
-    @GetMapping(path="/namnet")
-    public @ResponseBody String returnString(){
+    @GetMapping(path="/findnearbyrestaurants")
+    public @ResponseBody String returnRestaurants(@RequestParam Double l, @RequestParam Double lat, @RequestParam String restaurantType){
         // Gör anrop till googles API med rätt parametrar
         // ta svaret och parsa det. Skapa object och lägg dom i en lista.
         // Filtrera Listan efter:
         // öppna restauranger.
         // rätt mattyp.
         // returnana listan.
-        return "hello";
+        return String.format("Din koordinat är %s", l);
     }
 
      @RestController
