@@ -9,6 +9,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class RestaurantParser {
     static List<Restaurant> restaurantList = new ArrayList<>();
@@ -64,12 +65,10 @@ public class RestaurantParser {
     }
 
     private static void parseAndSetOpenStatus(JsonElement jsonRestaurant, Restaurant restaurant) {
-        JsonElement opening_hoursElement = jsonRestaurant.getAsJsonObject().get("opening_hours");
-        JsonObject opening_hoursObject = opening_hoursElement.getAsJsonObject();
-        boolean openStatus = opening_hoursObject.get("open_now").getAsBoolean();
+        Optional<JsonElement> jsonRestaurantOptional = Optional.of(jsonRestaurant);
+       // jsonRestaurantOptional.ifPresent(jsonRestaurantO -> restaurant.setOpen(jsonRestaurantO.getAsJsonObject().get("opening_hours").getAsJsonObject().get("open_now").getAsBoolean()));
+        jsonRestaurantOptional.map(jsonRestaurantOO -> jsonRestaurantOO.getAsJsonObject().get("opening_hours").getAsJsonObject().get("open_now").getAsBoolean());
 
-
-        restaurant.setOpen(openStatus);
     }
 
     private static void parseAndSetGeoCoordinates(JsonElement jsonRestaurant, Restaurant restaurant) {
