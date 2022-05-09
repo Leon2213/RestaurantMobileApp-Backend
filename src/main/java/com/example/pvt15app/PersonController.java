@@ -45,7 +45,7 @@ public class PersonController {
     }
 
     @GetMapping(path="/findnearbyrestaurants2")
-    public @ResponseBody String returnRestaurants2 (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String type) throws IOException {
+    public @ResponseBody List<Restaurant> returnRestaurants2 (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String type) throws IOException {
         RestaurantParser parser = new RestaurantParser();
         parser.startParsing();
         List<Restaurant> restaurants = parser.getResults();
@@ -57,9 +57,9 @@ public class PersonController {
         // rätt mattyp.
         // returnana listan.
 
-        String result = new Gson().toJson(restaurants);
+        //String result = new Gson().toJson(restaurants);
 
-        return result;
+        return restaurants;
     }
 
 
