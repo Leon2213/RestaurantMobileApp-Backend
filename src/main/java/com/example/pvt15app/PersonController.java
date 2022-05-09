@@ -32,7 +32,7 @@ public class PersonController {
     }*/
 
     @GetMapping(path="/findnearbyrestaurants")
-    public @ResponseBody String returnRestaurants (@RequestParam(value="latiude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String type){
+    public @ResponseBody String returnRestaurants (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String type){
         // Gör anrop till googles API med rätt parametrar
         // ta svaret och parsa det. Skapa object och lägg dom i en lista.
         // Filtrera Listan efter:
