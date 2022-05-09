@@ -46,7 +46,7 @@ public class PersonController {
     }
 
     @GetMapping(path="/erik")
-    public @ResponseBody List<Restaurant> returnRestaurants2 () throws IOException {
+    public @ResponseBody List<Restaurant> returnErik () throws IOException {
         RestaurantParser parser = new RestaurantParser();
         parser.startParsing();
         List<Restaurant> restaurants = parser.getResults();
