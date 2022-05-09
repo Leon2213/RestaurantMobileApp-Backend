@@ -32,15 +32,25 @@ public class PersonController {
     }*/
 
     @GetMapping(path="/testNode")
-    public String test(@RequestParam Double longitude, @RequestParam Double latitude, @RequestParam String restaurantType){
+    public String test(@RequestParam Double longitude){
         // Gör anrop till googles API med rätt parametrar
         // ta svaret och parsa det. Skapa object och lägg dom i en lista.
         // Filtrera Listan efter:
         // öppna restauranger.
         // rätt mattyp.
         // returnana listan.
-        return String.format("Din kordinat är %s %s", latitude, longitude, " och din restaurangTyp är %s", restaurantType);
+        return String.format("Din kordinat är %s, latitude");
     }
+
+     @RestController
+      public class HelloWorldController {
+
+                      @GetMapping("/hello")
+              public String hello(@RequestParam(value="name", defaultValue="World") String name){
+                  return String.format("Hello %s", name);
+              }
+      }
+
 
 
     @PostMapping(path="/add")
