@@ -32,14 +32,14 @@ public class PersonController {
     }*/
 
     @GetMapping(path="/findnearbyrestaurants")
-    public @ResponseBody String returnRestaurants(@RequestParam Double l, @RequestParam Double lat, @RequestParam String restaurantType){
+    public @ResponseBody String returnRestaurants (@RequestParam(value="latiude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String type){
         // Gör anrop till googles API med rätt parametrar
         // ta svaret och parsa det. Skapa object och lägg dom i en lista.
         // Filtrera Listan efter:
         // öppna restauranger.
         // rätt mattyp.
         // returnana listan.
-        return String.format("Din koordinat är %s", l);
+        return String.format("Din koordinat är %s %s %s", latitude, longitude, type);
     }
 
      @RestController
