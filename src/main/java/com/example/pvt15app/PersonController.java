@@ -1,6 +1,8 @@
 package com.example.pvt15app;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +45,7 @@ public class PersonController {
     }
 
     @GetMapping(path="/findnearbyrestaurants2")
-    public @ResponseBody List<Restaurant> returnRestaurants2 (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String type) throws IOException {
+    public @ResponseBody String returnRestaurants2 (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String type) throws IOException {
         RestaurantParser parser = new RestaurantParser();
         parser.startParsing();
         List<Restaurant> restaurants = parser.getResults();
@@ -54,7 +56,10 @@ public class PersonController {
         // öppna restauranger.
         // rätt mattyp.
         // returnana listan.
-        return restaurants;
+
+        String result = new Gson().toJson(restaurants);
+
+        return result;
     }
 
 
