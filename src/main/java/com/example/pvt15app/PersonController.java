@@ -46,9 +46,9 @@ public class PersonController {
 
     @GetMapping(path="/findnearbyrestaurants2")
     public @ResponseBody String returnRestaurants2 () throws IOException {
-        RestaurantParser parser = new RestaurantParser();
+        /*RestaurantParser parser = new RestaurantParser();
         parser.startParsing();
-        List<Restaurant> restaurants = parser.getResults();
+        List<Restaurant> restaurants = parser.getResults();*/
 
         // Gör anrop till googles API med rätt parametrar
         // ta svaret och parsa det. Skapa object och lägg dom i en lista.
