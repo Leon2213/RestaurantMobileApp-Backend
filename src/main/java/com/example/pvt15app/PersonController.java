@@ -47,7 +47,6 @@ public class PersonController {
         RestaurantParser parser = new RestaurantParser();
         parser.startParsing();
         List<Restaurant> restaurants = parser.getResults();
-        Gson gson = new Gson();
 
         // Gör anrop till googles API med rätt parametrar
         // ta svaret och parsa det. Skapa object och lägg dom i en lista.
