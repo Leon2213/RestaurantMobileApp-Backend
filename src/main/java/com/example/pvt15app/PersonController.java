@@ -15,6 +15,34 @@ public class PersonController {
     @Autowired
     private PersonRepository personRepository;
 
+    @GetMapping(path="/all")
+    public @ResponseBody Iterable<Person> getAll(){
+        return personRepository.findAll();
+    }
+
+  /*  @GetMapping(path="/findNearbyRestaurants")
+    public @ResponseBody Iterable<Restaurant> getAll(@RequestParam Double l, @RequestParam Double lat, @RequestParam String restaurantType){
+        // Gör anrop till googles API med rätt parametrar
+        // ta svaret och parsa det. Skapa object och lägg dom i en lista.
+        // Filtrera Listan efter:
+        // öppna restauranger.
+        // rätt mattyp.
+        // returnana listan.
+        return null;
+    }*/
+
+    @GetMapping(path="/testNode")
+    public String test(@RequestParam Double longitude, @RequestParam Double latitude, @RequestParam String restaurantType){
+        // Gör anrop till googles API med rätt parametrar
+        // ta svaret och parsa det. Skapa object och lägg dom i en lista.
+        // Filtrera Listan efter:
+        // öppna restauranger.
+        // rätt mattyp.
+        // returnana listan.
+        return String.format("Din kordinat är %s %s", latitude, longitude, " och din restaurangTyp är %s", restaurantType);
+    }
+
+
     @PostMapping(path="/add")
     public @ResponseBody String addNewUser (@RequestParam String name, @RequestParam String role){
         Person n = new Person();
@@ -23,12 +51,6 @@ public class PersonController {
         personRepository.save(n);
         return "Saved new user " + name;
     }
-
-    @GetMapping(path="/all")
-    public @ResponseBody Iterable<Person> getAll(){
-        return personRepository.findAll();
-    }
-
 
     @DeleteMapping(path="/delete/{id}")
     public @ResponseBody String deleteById(@PathVariable(value= "id") int id) {
