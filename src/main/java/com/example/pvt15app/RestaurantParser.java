@@ -14,9 +14,9 @@ public class RestaurantParser {
     static List<Restaurant> restaurantList = new ArrayList<>();
     URL url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurant&location=59.412983,18.034189&radius=250&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA");
     InputStreamReader reader = new InputStreamReader(url.openStream());
-    private JsonParser parser = new JsonParser();
-    private JsonObject jsonObject = parser.parse(reader).getAsJsonObject();
-    private JsonArray jsonArray = jsonObject.get("results").getAsJsonArray();
+    JsonParser parser = new JsonParser();
+    JsonObject jsonObject = parser.parse(reader).getAsJsonObject();
+    JsonArray jsonArray = jsonObject.get("results").getAsJsonArray();
 
 
     public RestaurantParser() throws IOException {

@@ -12,7 +12,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping(path="/app")
 public class PersonController {
-    List<Restaurant> rList = List.of(new Restaurant("LeonsMatställe", 1.0,2.0,true,"Storgatan"), new Restaurant("EriksMatställe", 5.0, 10.0, false, "Nygatan"));
+    List<Restaurant> rList = List.of(new Restaurant("empty", 1.0,2.0,true,"emptyStreet"));
 
     @Autowired
     private PersonRepository personRepository;
@@ -49,9 +49,15 @@ public class PersonController {
 
     @GetMapping(path="/erik")
     public @ResponseBody List<Restaurant> returnErik () {
-        /*RestaurantParser parser = new RestaurantParser();
-        parser.startParsing();
-        List<Restaurant> restaurants = parser.getResults();*/
+        try{
+            RestaurantParser parser = new RestaurantParser();
+            parser.startParsing();
+            List<Restaurant> restaurants = parser.getResults();
+            return restaurants;
+        } catch (IOException exception) {
+            return rList;
+        }
+
 
         // Gör anrop till googles API med rätt parametrar
         // ta svaret och parsa det. Skapa object och lägg dom i en lista.
@@ -62,7 +68,6 @@ public class PersonController {
 
         //String result = new Gson().toJson(restaurants);
 
-        return rList;
     }
 
 
