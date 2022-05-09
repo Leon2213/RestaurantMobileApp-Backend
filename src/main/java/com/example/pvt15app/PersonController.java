@@ -1,11 +1,15 @@
 package com.example.pvt15app;
 
+import Restaurant.Restaurant;
+import Restaurant.RestaurantParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -42,15 +46,19 @@ public class PersonController {
         return String.format("Din koordinat är %s %s %s", latitude, longitude, type);
     }
 
-     @RestController
-      public class HelloWorldController {
-
-                      @GetMapping("/hello")
-              public String hello(@RequestParam(value="name", defaultValue="World") String name){
-                  return String.format("Hello %s", name);
-              }
-      }
-
+    @GetMapping(path="/findnearbyrestaurants2")
+    public @ResponseBody List<Restaurant> returnRestaurants2 (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String type) throws IOException {
+        RestaurantParser parser = new RestaurantParser();
+        parser.startParsing();
+        List<Restaurant> restaurants = parser.getResults();
+        // Gör anrop till googles API med rätt parametrar
+        // ta svaret och parsa det. Skapa object och lägg dom i en lista.
+        // Filtrera Listan efter:
+        // öppna restauranger.
+        // rätt mattyp.
+        // returnana listan.
+        return restaurants;
+    }
 
 
     @PostMapping(path="/add")
