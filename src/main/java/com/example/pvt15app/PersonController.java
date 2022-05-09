@@ -31,7 +31,7 @@ public class PersonController {
         return null;
     }*/
 
-    @GetMapping(path="/testNode")
+    @GetMapping(path="/test")
     public String test(){
         // Gör anrop till googles API med rätt parametrar
         // ta svaret och parsa det. Skapa object och lägg dom i en lista.
