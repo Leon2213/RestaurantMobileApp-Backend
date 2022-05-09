@@ -12,7 +12,6 @@ import java.util.Optional;
 @RequestMapping(path="/app")
 public class PersonController {
 
-    RestaurantParser parser = new RestaurantParser();
     @Autowired
     private PersonRepository personRepository;
 
@@ -47,10 +46,11 @@ public class PersonController {
     }
 
     @GetMapping(path="/findnearbyrestaurants2")
-    public @ResponseBody String returnRestaurants2 () throws IOException {
-        /*parser.startParsing();
+    public @ResponseBody List<Restaurant> returnRestaurants2 () throws IOException {
+        RestaurantParser parser = new RestaurantParser();
+        parser.startParsing();
         List<Restaurant> restaurants = parser.getResults();
-*/
+
         // Gör anrop till googles API med rätt parametrar
         // ta svaret och parsa det. Skapa object och lägg dom i en lista.
         // Filtrera Listan efter:
@@ -60,7 +60,7 @@ public class PersonController {
 
         //String result = new Gson().toJson(restaurants);
 
-        return "hello";
+        return restaurants;
     }
 
 
