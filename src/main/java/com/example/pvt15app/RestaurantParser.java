@@ -24,6 +24,7 @@ public class RestaurantParser {
     }
 
     public void startParsing(){
+        restaurantList = new ArrayList<>();
         parseJsonArray(jsonArray);
     }
 
