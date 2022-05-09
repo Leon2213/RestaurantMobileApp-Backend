@@ -11,8 +11,13 @@ import java.util.Optional;
 @Controller
 @RequestMapping(path="/app")
 public class PersonController {
+
+    RestaurantParser parser = new RestaurantParser();
     @Autowired
     private PersonRepository personRepository;
+
+    public PersonController() throws IOException {
+    }
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Person> getAll(){
@@ -43,7 +48,6 @@ public class PersonController {
 
     @GetMapping(path="/findnearbyrestaurants2")
     public @ResponseBody String returnRestaurants2 () throws IOException {
-        RestaurantParser parser = new RestaurantParser();
         parser.startParsing();
         List<Restaurant> restaurants = parser.getResults();
 
