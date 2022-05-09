@@ -12,7 +12,12 @@ public class DemoApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(DemoApplication.class, args);
-
+		/*RestaurantParser parser = new RestaurantParser();
+		parser.startParsing();
+		List<Restaurant> restaurantList = parser.getResults();
+			for (Restaurant r : restaurantList) {
+				System.out.println(r + " \n");
+		}*/
 	}
 
 }
