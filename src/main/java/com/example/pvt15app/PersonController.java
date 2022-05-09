@@ -5,12 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/app")
 public class PersonController {
+    List<Restaurant> rList = List.of(new Restaurant("LeonsMatställe", 1.0,2.0,true,"Storgatan"), new Restaurant("EriksMatställe", 5.0, 10.0, false, "Nygatan"));
 
     @Autowired
     private PersonRepository personRepository;
@@ -46,10 +48,10 @@ public class PersonController {
     }
 
     @GetMapping(path="/erik")
-    public @ResponseBody List<Restaurant> returnErik () throws IOException {
-        RestaurantParser parser = new RestaurantParser();
+    public @ResponseBody List<Restaurant> returnErik () {
+        /*RestaurantParser parser = new RestaurantParser();
         parser.startParsing();
-        List<Restaurant> restaurants = parser.getResults();
+        List<Restaurant> restaurants = parser.getResults();*/
 
         // Gör anrop till googles API med rätt parametrar
         // ta svaret och parsa det. Skapa object och lägg dom i en lista.
@@ -60,7 +62,7 @@ public class PersonController {
 
         //String result = new Gson().toJson(restaurants);
 
-        return restaurants;
+        return rList;
     }
 
 
