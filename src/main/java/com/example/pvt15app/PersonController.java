@@ -31,8 +31,8 @@ public class PersonController {
         return null;
     }*/
 
-    @GetMapping(path="/test")
-    public @ResponseBody String test(){
+    @GetMapping(path="/namnet")
+    public @ResponseBody String returnString(){
         // Gör anrop till googles API med rätt parametrar
         // ta svaret och parsa det. Skapa object och lägg dom i en lista.
         // Filtrera Listan efter:
