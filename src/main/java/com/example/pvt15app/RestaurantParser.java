@@ -14,6 +14,7 @@ import java.util.Optional;
 public class RestaurantParser {
     static List<Restaurant> restaurantList = new ArrayList<>();
         URL url;
+        String urlString;
         InputStreamReader reader;
         JsonParser parser;
         JsonObject jsonObject;
@@ -21,8 +22,9 @@ public class RestaurantParser {
 
 
     public RestaurantParser(double latitude, double longitude) throws IOException {
-        String urlModified = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurant&location="+latitude+","+longitude+"&radius=500&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA";
-        this.url = new URL(urlModified);
+        String urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurant&location="+latitude+","+longitude+"&radius=500&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA";
+        this.urlString = urlString;
+        this.url = new URL(urlString);
         this.reader = new InputStreamReader(url.openStream());
         this.parser = new JsonParser();
         this.jsonObject = parser.parse(reader).getAsJsonObject();
@@ -30,8 +32,9 @@ public class RestaurantParser {
     }
 
     public RestaurantParser() throws IOException {
-        String urlModified = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurant&location=59.342069,18.095902&radius=500&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA";
-        this.url = new URL(urlModified);
+        String urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurant&location=59.342069,18.095902&radius=500&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA";
+        this.urlString = urlString;
+        this.url = new URL(urlString);
         this.reader = new InputStreamReader(url.openStream());
         this.parser = new JsonParser();
         this.jsonObject = parser.parse(reader).getAsJsonObject();
@@ -106,6 +109,10 @@ public class RestaurantParser {
 
     public List<Restaurant> getResults() {
         return restaurantList;
+    }
+
+    public String getUrl(){
+        return urlString;
     }
 
 }
