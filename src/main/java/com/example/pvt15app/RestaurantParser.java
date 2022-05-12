@@ -22,12 +22,13 @@ public class RestaurantParser {
 
 
 
+
     public RestaurantParser(double longitude, double latitude) throws IOException {
-        url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurant&location="+latitude+","+longitude+"&radius=250&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA");
+        url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurant&location="+latitude+","+longitude+"&radius=500&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA");
         this.reader = new InputStreamReader(url.openStream());
         this.parser = new JsonParser();
         this.jsonObject = parser.parse(reader).getAsJsonObject();
-        JsonArray jsonArray = jsonObject.get("results").getAsJsonArray();
+        this.jsonArray = jsonObject.get("results").getAsJsonArray();
     }
 
     public void startParsing(){
