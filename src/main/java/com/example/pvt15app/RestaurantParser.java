@@ -66,6 +66,7 @@ public class RestaurantParser {
         parseRestaurantName(jsonRestaurant, restaurant);
         parseStreetAddress(jsonRestaurant, restaurant);
 
+        if(restaurant.isOpen())
         restaurantList.add(restaurant);
     }
 

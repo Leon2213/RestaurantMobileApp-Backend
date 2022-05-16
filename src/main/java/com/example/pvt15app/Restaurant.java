@@ -43,7 +43,7 @@ public class Restaurant {
         this.latitude = latitude;
     }
 
-    public Boolean getOpen() {
+    public Boolean isOpen() {
         return isOpen;
     }
 
