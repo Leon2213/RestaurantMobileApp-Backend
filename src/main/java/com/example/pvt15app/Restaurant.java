@@ -44,7 +44,11 @@ public class Restaurant {
     }
 
     public Boolean isOpen() {
-        return isOpen;
+        if (isOpen == null) {
+            return false;
+        } else {
+            return isOpen;
+        }
     }
 
     public void setOpen(Boolean open) {
