@@ -65,8 +65,10 @@ public class RestaurantParser {
         parseRestaurantName(jsonRestaurant, restaurant);
         parseStreetAddress(jsonRestaurant, restaurant);
         parsePhotoReference(jsonRestaurant, restaurant);
+        parsePlaceId(jsonRestaurant, restaurant);
 
-        if(restaurant.isOpen())
+
+            if(restaurant.isOpen())
         restaurantList.add(restaurant);
     }
 
@@ -87,6 +89,12 @@ public class RestaurantParser {
 
         restaurant.setPhotoReference(photoRefString);
 
+    }
+
+    private static void parsePlaceId(JsonElement jsonRestaurant, Restaurant restaurant) {
+        String placeId = jsonRestaurant.getAsJsonObject().get("place_id").getAsString();
+       // System.out.println(placeId);
+        restaurant.setPlaceId(placeId);
     }
 
     private static void parseAndSetGeoCoordinates(JsonElement jsonRestaurant, Restaurant restaurant) {
