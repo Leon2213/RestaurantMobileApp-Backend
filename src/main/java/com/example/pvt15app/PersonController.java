@@ -12,7 +12,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping(path="/app")
 public class PersonController {
-    List<Restaurant> rList = List.of(new Restaurant("empty", 1.0,2.0,true,"emptyStreet"));
+    List<Restaurant> rList = List.of(new Restaurant("empty", 1.0,2.0,true,"emptyStreet", "testRef"));
 
     @Autowired
     private PersonRepository personRepository;

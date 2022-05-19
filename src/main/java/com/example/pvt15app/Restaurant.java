@@ -7,16 +7,18 @@ public class Restaurant {
     private double latitude;
     private Boolean isOpen;
     private String address;
+    private String photoReference;
 
     public Restaurant() {
     }
 
-    public Restaurant(String name, double longitude, double latitude, Boolean isOpen, String address) {
+    public Restaurant(String name, double longitude, double latitude, Boolean isOpen, String address, String photoReference) {
         this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
         this.isOpen = isOpen;
         this.address = address;
+        this.photoReference = photoReference;
     }
 
     public String getName() {
@@ -41,6 +43,14 @@ public class Restaurant {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public String getPhotoReference() {
+        return photoReference;
+    }
+
+    public void setPhotoReference(String photoReference){
+        this.photoReference = photoReference;
     }
 
     public Boolean isOpen() {
@@ -70,7 +80,8 @@ public class Restaurant {
                 "longitude: " + longitude + " \n" +
                 "latitude: " + latitude + " \n" +
                 "isOpen: " + isOpen + " \n" +
-                "address: " + address
-                ;
+                "address: " + address + " \n" +
+                "photoRef: " + photoReference;
+
     }
 }
