@@ -57,6 +57,7 @@ public class RestaurantParser {
             System.out.println(r + "\n");
         }
     }*/
+    //
 
     private static void parseJSONobjectAndCreateRestaurantObject(JsonElement jsonRestaurant) {
         Restaurant restaurant = new Restaurant();

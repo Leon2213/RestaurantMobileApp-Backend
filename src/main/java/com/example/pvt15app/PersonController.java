@@ -66,6 +66,7 @@ public class PersonController {
             return rList;
         }
     }
+    //
 
     @GetMapping(path="/find")
     public @ResponseBody List<Restaurant> returnRestaurants3 (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String type){
