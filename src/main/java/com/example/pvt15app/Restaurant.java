@@ -73,9 +73,7 @@ public class Restaurant {
                 "longitude: " + longitude + " \n" +
                 "latitude: " + latitude + " \n" +
                 "isOpen: " + isOpen + " \n" +
-                "address: " + address + " \n" +
-                "photoRef: " + photoReference + " \n" +
-                "placeID: " + placeid;
+                "address: " + address;
 
     }
 }

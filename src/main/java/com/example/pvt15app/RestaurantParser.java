@@ -75,7 +75,7 @@ public class RestaurantParser {
 
     /*
 
-     
+
     private static void parsePhotoReference(JsonElement jsonRestaurant, Restaurant restaurant) {
 
         JsonObject obj = jsonRestaurant.getAsJsonObject();
