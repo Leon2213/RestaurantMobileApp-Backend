@@ -24,7 +24,7 @@ public class RestaurantDataHolder {
 
     private Boolean snacks;
 
-    private String[] reviews = new String[];
+    private String[] reviews = new String[20];
 
     public String getPlaceid() {
         return placeid;
