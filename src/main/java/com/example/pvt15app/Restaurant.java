@@ -7,20 +7,16 @@ public class Restaurant {
     private double latitude;
     private Boolean isOpen;
     private String address;
-    private String photoReference;
-    private String placeid;
 
     public Restaurant() {
     }
 
-    public Restaurant(String name, double longitude, double latitude, Boolean isOpen, String address, String photoReference, String placeid) {
+    public Restaurant(String name, double longitude, double latitude, Boolean isOpen, String address) {
         this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
         this.isOpen = isOpen;
         this.address = address;
-        this.photoReference = photoReference;
-        this.placeid = placeid;
     }
 
     public String getName() {
@@ -47,22 +43,6 @@ public class Restaurant {
         this.latitude = latitude;
     }
 
-
-    public String getPhotoReference() {
-        return photoReference;
-    }
-
-    public void setPhotoReference(String photoReference){
-        this.photoReference = photoReference;
-    }
-
-    public String getPlaceid(){
-        return placeid;
-    }
-
-    public void setPlaceId(String placeid){
-        this.placeid = placeid;
-    }
 
 
 
