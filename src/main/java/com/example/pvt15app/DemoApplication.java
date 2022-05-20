@@ -12,6 +12,7 @@ public class DemoApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(DemoApplication.class, args);
+		RestaurantDataHolder test = new RestaurantDataHolder(); 
 		/*RestaurantParser parser = new RestaurantParser();
 		parser.startParsing();
 		List<Restaurant> restaurantList = parser.getResults();

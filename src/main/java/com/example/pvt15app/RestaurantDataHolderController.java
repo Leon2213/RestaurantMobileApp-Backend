@@ -11,18 +11,18 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/app")
-public class PersonController {
+public class RestaurantDataHolderController {
     List<Restaurant> rList = List.of(new Restaurant("empty", 1.0,2.0,true,"emptyStreet"));
 
     @Autowired
-    private PersonRepository personRepository;
+    private RestaurantDataHolderRepository dataRepository;
 
-    public PersonController() throws IOException {
+    public RestaurantDataHolderController() throws IOException {
     }
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Person> getAll(){
-        return personRepository.findAll();
+    public @ResponseBody Iterable<RestaurantDataHolder> getAll(){
+        return dataRepository.findAll();
     }
 
   /*  @GetMapping(path="/findNearbyRestaurants")
@@ -118,26 +118,42 @@ public class PersonController {
 
     }
 
-
+/*
     @PostMapping(path="/add")
     public @ResponseBody String addNewUser (@RequestParam String name, @RequestParam String role){
         Person n = new Person();
         n.setName(name);
         n.setRole(role);
-        personRepository.save(n);
+        dataRepository.save(n);
         return "Saved new user " + name;
+    } */
+
+    @PostMapping(path="/add")
+    public @ResponseBody String addNewUser (@RequestParam String id, @RequestParam String name, @RequestParam Boolean hamburger, @RequestParam Boolean korv, @RequestParam Boolean pizza, @RequestParam Boolean kebab, @RequestParam Boolean snacks){
+        RestaurantDataHolder newRestaurant = new RestaurantDataHolder();
+
+        newRestaurant.setPlaceid(id);
+        newRestaurant.setRestaurantName(name);
+        newRestaurant.setHamburger(hamburger);
+        newRestaurant.setKorv(korv);
+        newRestaurant.setPizza(pizza);
+        newRestaurant.setKebab(kebab);
+        newRestaurant.setSnacks(snacks);
+        dataRepository.save(newRestaurant);
+        return "Saved new restaurant " + name +" with id: " + id;
     }
 
+    /*
     @DeleteMapping(path="/delete/{id}")
     public @ResponseBody String deleteById(@PathVariable(value= "id") int id) {
-        Optional<Person> p = personRepository.findById(id);
+        Optional<Person> p = dataRepository.findById(id);
         if(p.isPresent()){
-            personRepository.deleteById(id);
+            dataRepository.deleteById(id);
             return "successfully deleted person with id=" + id;
         } else {
             return "could not find person with id=" + id;
         }
 
 
-    }
+    } */
 }

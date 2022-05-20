@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.example.pvt15app.Person;
 
-public interface PersonRepository extends CrudRepository <Person, Integer> {
+public interface RestaurantDataHolderRepository extends CrudRepository <RestaurantDataHolder, Integer> {
 
 }
