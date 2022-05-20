@@ -30,7 +30,7 @@ public class RestaurantDataHolder {
         return placeid;
     }
 
-    public void setPlaceid(Integer placeid) {
+    public void setPlaceid(String placeid) {
         this.placeid = placeid;
     }
 
