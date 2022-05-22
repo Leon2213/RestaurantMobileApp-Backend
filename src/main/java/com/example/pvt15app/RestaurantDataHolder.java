@@ -24,7 +24,7 @@ public class RestaurantDataHolder {
 
     private Boolean snacks;
 
-    private String[] reviews = new String[20];
+    /*private String[] reviews = new String[20];*/
 
     public String getPlaceid() {
         return placeid;
@@ -82,11 +82,11 @@ public class RestaurantDataHolder {
         this.snacks = snacks;
     }
 
-    public String[] getReviews() {
+    /*public String[] getReviews() {
         return reviews;
-    }
+    }*/
 
-    public void setReviews(String[] reviews) {
+    /*public void setReviews(String[] reviews) {
         this.reviews = reviews;
-    }
+    }*/
 }
