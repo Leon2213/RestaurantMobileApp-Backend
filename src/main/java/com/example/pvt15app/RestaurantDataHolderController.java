@@ -145,7 +145,7 @@ public class RestaurantDataHolderController {
     }
 
     @PostMapping(path="/addReview")
-    public @ResponseBody String addNewRestaurantData (@RequestParam String id, @RequestParam String review){
+    public @ResponseBody String addNewReviewData (@RequestParam String id, @RequestParam String review){
         dataRepository.findById(id).ifPresent(
                 restaurant -> restaurant.addReview(review));
         dataRepository.findById(id).ifPresent(
