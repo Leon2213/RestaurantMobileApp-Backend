@@ -5,9 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 @Controller
 @RequestMapping(path="/app")
@@ -69,14 +70,18 @@ public class RestaurantDataHolderController {
     //
 
     @GetMapping(path="/find")
-    public @ResponseBody List<Restaurant> returnRestaurants3 (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String type){
-        System.out.println("latiude: " +latitude+ "\n" + "longitude: " +longitude+ "\n" + "type: " + type);
+    public @ResponseBody List<Restaurant> returnRestaurants3 (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String foodtypes){
+        List<String> foodCriteriaList = Arrays.asList(foodtypes.split(","));
+        System.out.println("latiude: " +latitude+ "\n" + "longitude: " +longitude+ "\n" + "type: ");
         //double testLat = 59.342069;
         // double testLong = 18.095902;
         try{
             RestaurantParser parser = new RestaurantParser(latitude, longitude);
             parser.startParsing();
             List<Restaurant> googleRestaurantResultList = parser.getResults();
+            //Filter filter = new Filter(foodCriteriaList, googleRestaurantResultList);
+
+            //filterResultsOnRequestedFoodtype(googleRestaurantResultList, hamburger, korv, pizza, kebab, snacks);
             // ta strängen type och hämta ut de kategorier användaren vill ha.
             // matcha googleRestaurantResultList med vår egen databas som har info
             // om vilka restauranger som matchar användarens önskemål.
@@ -87,6 +92,8 @@ public class RestaurantDataHolderController {
             return rList;
         }
     }
+
+
 
 
 
@@ -118,15 +125,7 @@ public class RestaurantDataHolderController {
 
     }
 
-/*
-    @PostMapping(path="/add")
-    public @ResponseBody String addNewUser (@RequestParam String name, @RequestParam String role){
-        Person n = new Person();
-        n.setName(name);
-        n.setRole(role);
-        dataRepository.save(n);
-        return "Saved new user " + name;
-    } */
+
 
     @PostMapping(path="/addRestaurant")
     public @ResponseBody String addNewRestaurantData (@RequestParam String id, @RequestParam String name, @RequestParam Boolean hamburger, @RequestParam Boolean korv, @RequestParam Boolean pizza, @RequestParam Boolean kebab, @RequestParam Boolean snacks){
@@ -144,6 +143,18 @@ public class RestaurantDataHolderController {
         return "Saved new restaurant " + name +" with id: " + id;
     }
 
+    @DeleteMapping(path="/deleteRestaurant")
+    public @ResponseBody String deleteRestaurantData (@RequestParam String id){
+        Optional<RestaurantDataHolder> restaurantDataHolder = dataRepository.findById(id);
+        if(restaurantDataHolder.isPresent()){
+            dataRepository.delete(restaurantDataHolder.get());
+        } else {
+            return "restaurangen fanns inte. Kontrollera ID och försök igen.";
+        }
+
+        return "Tog bort restaurangenen med id: " + id;
+    }
+
     @PostMapping(path="/addReview")
     public @ResponseBody String addNewReviewData (@RequestParam String id, @RequestParam String review){
         dataRepository.findById(id).ifPresent(
@@ -154,18 +165,26 @@ public class RestaurantDataHolderController {
     }
 
 
-
-    /*
-    @DeleteMapping(path="/delete/{id}")
-    public @ResponseBody String deleteById(@PathVariable(value= "id") int id) {
-        Optional<Person> p = dataRepository.findById(id);
-        if(p.isPresent()){
-            dataRepository.deleteById(id);
-            return "successfully deleted person with id=" + id;
+   /* // Tycks inte funka att skicka 2 parameterar till delete.
+    @DeleteMapping(path="/deleteReview")
+    public @ResponseBody String deleteReview (@RequestParam String reviewId, @RequestParam String id){
+        int reviewIndexNr = Integer.valueOf(reviewId);
+        String reviewString;
+        Optional<RestaurantDataHolder> restaurantDataHolder = dataRepository.findById(id);
+        if(restaurantDataHolder.isPresent()){
+            restaurantDataHolder.get().removeAllReviews();
+            reviewString = restaurantDataHolder.get().getReview().get(reviewIndexNr);
+            restaurantDataHolder.get().removeReview(reviewIndexNr);
         } else {
-            return "could not find person with id=" + id;
+            return "restaurangen eller reviewnr fanns inte. Kontrollera ID och reviewNr och försök igen.";
         }
+        dataRepository.save(restaurantDataHolder.get());
+        return "Tog bort reviewen: " + reviewString + " från restaurangen med ID " + id;
+    }*/
 
 
-    } */
+
+
+
+
 }

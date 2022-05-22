@@ -86,8 +86,16 @@ public class RestaurantDataHolder {
         reviews.add(review);
     }
 
+    public void removeReview(int reviewNr){
+        reviews.remove(reviewNr);
+    }
+
     public List<String> getReview(){
         return reviews;
+    }
+
+    public void removeAllReviews(){
+        reviews.clear();
     }
 
     /*public String[] getReviews() {

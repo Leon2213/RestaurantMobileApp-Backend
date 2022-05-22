@@ -7,6 +7,7 @@ public class Restaurant {
     private double latitude;
     private Boolean isOpen;
     private String address;
+    private String restaurantId;
 
     public Restaurant() {
     }
@@ -43,9 +44,6 @@ public class Restaurant {
         this.latitude = latitude;
     }
 
-
-
-
     public Boolean isOpen() {
         if (isOpen == null) {
             return false;
@@ -66,6 +64,14 @@ public class Restaurant {
         this.address = address;
     }
 
+    public String getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(String restaurantId){
+        this.restaurantId = restaurantId;
+    }
+
     @Override
     public String toString() {
         return "Restaurant: " + "\n" +
@@ -73,8 +79,11 @@ public class Restaurant {
                 "longitude: " + longitude + " \n" +
                 "latitude: " + latitude + " \n" +
                 "isOpen: " + isOpen + " \n" +
-                "address: " + address;
+                "address: " + address + " \n" +
+                "restaurant-id " + restaurantId;
 
     }
+
+
 }
 //
