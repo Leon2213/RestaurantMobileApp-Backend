@@ -128,8 +128,8 @@ public class RestaurantDataHolderController {
         return "Saved new user " + name;
     } */
 
-    @PostMapping(path="/add")
-    public @ResponseBody String addNewUser (@RequestParam String id, @RequestParam String name, @RequestParam Boolean hamburger, @RequestParam Boolean korv, @RequestParam Boolean pizza, @RequestParam Boolean kebab, @RequestParam Boolean snacks){
+    @PostMapping(path="/addRestaurant")
+    public @ResponseBody String addNewRestaurantData (@RequestParam String id, @RequestParam String name, @RequestParam Boolean hamburger, @RequestParam Boolean korv, @RequestParam Boolean pizza, @RequestParam Boolean kebab, @RequestParam Boolean snacks){
         RestaurantDataHolder newRestaurant = new RestaurantDataHolder();
 
         newRestaurant.setPlaceid(id);
@@ -139,9 +139,21 @@ public class RestaurantDataHolderController {
         newRestaurant.setPizza(pizza);
         newRestaurant.setKebab(kebab);
         newRestaurant.setSnacks(snacks);
+        //newRestaurant.addReview("wow va gott det var");
         dataRepository.save(newRestaurant);
         return "Saved new restaurant " + name +" with id: " + id;
     }
+
+    @PostMapping(path="/addReview")
+    public @ResponseBody String addNewRestaurantData (@RequestParam String id, @RequestParam String review){
+        dataRepository.findById(id).ifPresent(
+                restaurant -> restaurant.addReview(review));
+        dataRepository.findById(id).ifPresent(
+                restaurant -> dataRepository.save(restaurant));
+                return "the new review has been added";
+    }
+
+
 
     /*
     @DeleteMapping(path="/delete/{id}")

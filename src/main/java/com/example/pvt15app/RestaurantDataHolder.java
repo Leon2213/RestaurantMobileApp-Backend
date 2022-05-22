@@ -2,10 +2,9 @@ package com.example.pvt15app;
 
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class RestaurantDataHolder {
@@ -24,7 +23,8 @@ public class RestaurantDataHolder {
 
     private Boolean snacks;
 
-    /*private String[] reviews = new String[20];*/
+    @ElementCollection
+    private List<String> reviews = new ArrayList<>();
 
     public String getPlaceid() {
         return placeid;
@@ -80,6 +80,14 @@ public class RestaurantDataHolder {
 
     public void setSnacks(Boolean snacks) {
         this.snacks = snacks;
+    }
+
+    public void addReview(String review) {
+        reviews.add(review);
+    }
+
+    public List<String> getReview(){
+        return reviews;
     }
 
     /*public String[] getReviews() {
