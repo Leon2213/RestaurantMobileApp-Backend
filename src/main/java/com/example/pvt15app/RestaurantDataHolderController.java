@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -70,16 +71,41 @@ public class RestaurantDataHolderController {
     //
 
     @GetMapping(path="/find")
-    public @ResponseBody List<Restaurant> returnRestaurants3 (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String foodtypes){
-        List<String> foodCriteriaList = Arrays.asList(foodtypes.split(","));
-        System.out.println("latiude: " +latitude+ "\n" + "longitude: " +longitude+ "\n" + "type: ");
+    public @ResponseBody List<Restaurant> returnRestaurants3 (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam Boolean hamburger, @RequestParam Boolean korv, @RequestParam Boolean pizza, @RequestParam Boolean kebab, @RequestParam Boolean snacks){
+
         //double testLat = 59.342069;
         // double testLong = 18.095902;
         try{
+            List<String> foodCriteriaList = new ArrayList<>();
+            if(hamburger == true){
+                foodCriteriaList.add("hamburger");
+            }
+            if(korv == true){
+                foodCriteriaList.add("korv");
+            }
+            if(pizza == true){
+                foodCriteriaList.add("pizza");
+            }
+            if(kebab == true){
+                foodCriteriaList.add("kebab");
+            }
+            if(snacks == true){
+                foodCriteriaList.add("snacks");
+            }
+
+            System.out.println(foodCriteriaList);
+            //System.out.println("latiude: " +latitude+ "\n" + "longitude: " +longitude+ "\n" + "criterialist: " + foodCriteriaList);
             RestaurantParser parser = new RestaurantParser(latitude, longitude);
             parser.startParsing();
+
             List<Restaurant> googleRestaurantResultList = parser.getResults();
-            //Filter filter = new Filter(foodCriteriaList, googleRestaurantResultList);
+            googleRestaurantResultList.forEach(x -> System.out.println(x.getName()));
+            //System.out.println("här printas listan av googleresultat");
+            //System.out.println(googleRestaurantResultList);
+
+            // Nedan är the money maker
+            Filter filter = new Filter(foodCriteriaList, googleRestaurantResultList, dataRepository);
+            List<Restaurant> results = filter.getResults();
 
             //filterResultsOnRequestedFoodtype(googleRestaurantResultList, hamburger, korv, pizza, kebab, snacks);
             // ta strängen type och hämta ut de kategorier användaren vill ha.
@@ -87,7 +113,8 @@ public class RestaurantDataHolderController {
             // om vilka restauranger som matchar användarens önskemål.
             // returnera sedan de restauranger som passar användarens önskemål.
             System.out.println(parser.getUrl());
-            return googleRestaurantResultList;
+            //return googleRestaurantResultList;
+            return results;
         } catch (IOException exception) {
             return rList;
         }
@@ -130,14 +157,24 @@ public class RestaurantDataHolderController {
     @PostMapping(path="/addRestaurant")
     public @ResponseBody String addNewRestaurantData (@RequestParam String id, @RequestParam String name, @RequestParam Boolean hamburger, @RequestParam Boolean korv, @RequestParam Boolean pizza, @RequestParam Boolean kebab, @RequestParam Boolean snacks){
         RestaurantDataHolder newRestaurant = new RestaurantDataHolder();
+        if(hamburger == true){
+            newRestaurant.addCategory("hamburger");
+        }
+        if(korv == true){
+            newRestaurant.addCategory("korv");
+        }
+        if(pizza == true){
+            newRestaurant.addCategory("pizza");
+        }
+        if(kebab == true){
+            newRestaurant.addCategory("kebab");
+        }
+        if(snacks == true){
+            newRestaurant.addCategory("snacks");
+        }
 
         newRestaurant.setPlaceid(id);
         newRestaurant.setRestaurantName(name);
-        newRestaurant.setHamburger(hamburger);
-        newRestaurant.setKorv(korv);
-        newRestaurant.setPizza(pizza);
-        newRestaurant.setKebab(kebab);
-        newRestaurant.setSnacks(snacks);
         //newRestaurant.addReview("wow va gott det var");
         dataRepository.save(newRestaurant);
         return "Saved new restaurant " + name +" with id: " + id;
@@ -145,7 +182,10 @@ public class RestaurantDataHolderController {
 
     @DeleteMapping(path="/deleteRestaurant")
     public @ResponseBody String deleteRestaurantData (@RequestParam String id){
+        //System.out.println("detta är ID i delete");
+       // System.out.println(id);
         Optional<RestaurantDataHolder> restaurantDataHolder = dataRepository.findById(id);
+        //System.out.println("detta är restaurantDataholDer obj: " + restaurantDataHolder);
         if(restaurantDataHolder.isPresent()){
             dataRepository.delete(restaurantDataHolder.get());
         } else {

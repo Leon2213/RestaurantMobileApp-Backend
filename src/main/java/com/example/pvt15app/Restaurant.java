@@ -1,5 +1,7 @@
 package com.example.pvt15app;
 
+import java.util.List;
+
 public class Restaurant {
 
     private String name;
@@ -8,6 +10,8 @@ public class Restaurant {
     private Boolean isOpen;
     private String address;
     private String restaurantId;
+    private List<String> foodTypes;
+    private List<String> reviews;
 
     public Restaurant() {
     }
@@ -18,6 +22,7 @@ public class Restaurant {
         this.latitude = latitude;
         this.isOpen = isOpen;
         this.address = address;
+
     }
 
     public String getName() {
@@ -72,6 +77,24 @@ public class Restaurant {
         this.restaurantId = restaurantId;
     }
 
+    public void addFoodtypes(List<String> foodTypes){
+        this.foodTypes = foodTypes;
+    }
+
+    public List<String> getFoodTypes() {
+        return foodTypes;
+    }
+
+    public List<String> getReviews(){
+        return reviews;
+    }
+
+    public void setReviews(List<String> reviews) {
+        this.reviews = reviews;
+    }
+
+
+
     @Override
     public String toString() {
         return "Restaurant: " + "\n" +
@@ -83,7 +106,6 @@ public class Restaurant {
                 "restaurant-id " + restaurantId;
 
     }
-
 
 }
 //
