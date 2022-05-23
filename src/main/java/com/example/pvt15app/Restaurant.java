@@ -12,6 +12,7 @@ public class Restaurant {
     private String restaurantId;
     private List<String> foodTypes;
     private List<String> reviews;
+    private String rating;
 
     public Restaurant() {
     }
@@ -77,6 +78,10 @@ public class Restaurant {
         this.restaurantId = restaurantId;
     }
 
+    public String getRating() {
+        return rating;
+    }
+
     public void addFoodtypes(List<String> foodTypes){
         this.foodTypes = foodTypes;
     }
@@ -93,6 +98,10 @@ public class Restaurant {
         this.reviews = reviews;
     }
 
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
 
 
     @Override
@@ -106,6 +115,5 @@ public class Restaurant {
                 "restaurant-id " + restaurantId;
 
     }
-
 }
 //
