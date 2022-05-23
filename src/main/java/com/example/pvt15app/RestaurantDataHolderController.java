@@ -6,10 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 @Controller
 @RequestMapping(path="/app")
@@ -50,13 +48,13 @@ public class RestaurantDataHolderController {
     }
 
 
-    @GetMapping(path="/erik2")
+   /* @GetMapping(path="/erik2")
     public @ResponseBody List<Restaurant> returnRestaurants2 (){
        // double testLat = 59.342069;
        // double testLong = 18.095902;
         try{
             RestaurantParser parser = new RestaurantParser();
-            parser.startParsing();
+            parser.startParsing(jsonArray);
             List<Restaurant> googleRestaurantResultList = parser.getResults();
             // ta strängen type och hämta ut de kategorier användaren vill ha.
             // matcha googleRestaurantResultList med vår egen databas som har info
@@ -67,7 +65,7 @@ public class RestaurantDataHolderController {
         } catch (IOException exception) {
             return rList;
         }
-    }
+    }*/
     //
 
     @GetMapping(path="/find")
@@ -96,7 +94,6 @@ public class RestaurantDataHolderController {
             System.out.println(foodCriteriaList);
             //System.out.println("latiude: " +latitude+ "\n" + "longitude: " +longitude+ "\n" + "criterialist: " + foodCriteriaList);
             RestaurantParser parser = new RestaurantParser(latitude, longitude);
-            parser.startParsing();
 
             List<Restaurant> googleRestaurantResultList = parser.getResults();
             googleRestaurantResultList.forEach(x -> System.out.println(x.getName()));
@@ -112,9 +109,45 @@ public class RestaurantDataHolderController {
             // matcha googleRestaurantResultList med vår egen databas som har info
             // om vilka restauranger som matchar användarens önskemål.
             // returnera sedan de restauranger som passar användarens önskemål.
-            System.out.println(parser.getUrl());
+           // System.out.println(parser.getUrl());
             //return googleRestaurantResultList;
             return results;
+        } catch (IOException exception) {
+            return rList;
+        }
+    }
+
+    @GetMapping(path="/find2")
+    public @ResponseBody List<Restaurant> returnRestaurants34 (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude){
+
+        //double testLat = 59.342069;
+        // double testLong = 18.095902;
+        try{
+            //System.out.println("latiude: " +latitude+ "\n" + "longitude: " +longitude+ "\n" + "criterialist: " + foodCriteriaList);
+            RestaurantParser parser = new RestaurantParser(latitude, longitude);
+           // parser.startParsing();
+            System.out.println("--körs--");
+
+            List<Restaurant> googleRestaurantResultList = parser.getResults();
+            System.out.println("---Start google Resultlist");
+            System.out.println(googleRestaurantResultList);
+            googleRestaurantResultList.forEach(x -> System.out.println(x.getName()));
+            System.out.println("---End google Resultlist");
+            //System.out.println("här printas listan av googleresultat");
+            //System.out.println(googleRestaurantResultList);
+
+            // Nedan är the money maker
+
+
+
+            //filterResultsOnRequestedFoodtype(googleRestaurantResultList, hamburger, korv, pizza, kebab, snacks);
+            // ta strängen type och hämta ut de kategorier användaren vill ha.
+            // matcha googleRestaurantResultList med vår egen databas som har info
+            // om vilka restauranger som matchar användarens önskemål.
+            // returnera sedan de restauranger som passar användarens önskemål.
+           // System.out.println(parser.getUrl());
+            return googleRestaurantResultList;
+            //return results;
         } catch (IOException exception) {
             return rList;
         }
@@ -125,11 +158,11 @@ public class RestaurantDataHolderController {
 
 
 
-    @GetMapping(path="/erik")
+    /*@GetMapping(path="/erik")
     public @ResponseBody List<Restaurant> returnErik (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String type) {
         try{
             RestaurantParser parser = new RestaurantParser(latitude, longitude);
-            parser.startParsing();
+            parser.startParsing(jsonArray);
             List<Restaurant> googleRestaurantResultList = parser.getResults();
             // ta strängen type och hämta ut de kategorier användaren vill ha.
             // matcha googleRestaurantResultList med vår egen databas som har info
@@ -150,7 +183,7 @@ public class RestaurantDataHolderController {
 
         //String result = new Gson().toJson(restaurants);
 
-    }
+    }*/
 
 
 
