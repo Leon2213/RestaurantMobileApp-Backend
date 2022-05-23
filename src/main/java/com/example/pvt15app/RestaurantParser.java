@@ -22,7 +22,7 @@ public class RestaurantParser {
 
 
     public RestaurantParser(double latitude, double longitude) throws IOException {
-        String urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurant&location="+latitude+","+longitude+"&radius=500&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA";
+        String urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurant&location="+latitude+","+longitude+"&radius=1000&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA";
         this.urlString = urlString;
         this.url = new URL(urlString);
         this.reader = new InputStreamReader(url.openStream());
