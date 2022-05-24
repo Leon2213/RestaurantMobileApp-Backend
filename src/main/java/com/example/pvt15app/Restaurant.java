@@ -13,6 +13,7 @@ public class Restaurant {
     private List<String> foodTypes;
     private List<String> reviews;
     private String rating;
+    private String photoReference;
 
     public Restaurant() {
     }
@@ -102,6 +103,14 @@ public class Restaurant {
         this.rating = rating;
     }
 
+    public void setPhotoReference(String photoRefString) {
+        this.photoReference = photoRefString;
+    }
+
+    public String getPhotoReference(){
+        return photoReference;
+    }
+
 
 
     @Override
@@ -115,5 +124,7 @@ public class Restaurant {
                 "restaurant-id " + restaurantId;
 
     }
+
+
 }
 //

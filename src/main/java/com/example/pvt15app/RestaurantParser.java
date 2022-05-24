@@ -95,7 +95,7 @@ public class RestaurantParser {
         parseAndSetOpenStatus(jsonRestaurant, restaurant);
         parseRestaurantName(jsonRestaurant, restaurant);
         parseStreetAddress(jsonRestaurant, restaurant);
-      //  parsePhotoReference(jsonRestaurant, restaurant);
+        parsePhotoReference(jsonRestaurant, restaurant);
         parsePlaceId(jsonRestaurant, restaurant);
         parseRating(jsonRestaurant, restaurant);
 
@@ -108,6 +108,26 @@ public class RestaurantParser {
         /*if(restaurant.isOpen() && !restaurantList.contains(restaurant)) {
             restaurantList.add(restaurant);
         }*/
+    }
+
+
+    private static void parsePhotoReference(JsonElement jsonRestaurant, Restaurant restaurant) {
+
+        JsonObject obj = jsonRestaurant.getAsJsonObject();
+        JsonElement photosElement = obj.get("photos");
+        JsonArray photoArray = photosElement.getAsJsonArray();
+        JsonElement element1 = photoArray.get(0);
+        JsonObject photoObj = element1.getAsJsonObject();
+        String photoRefString = photoObj.get("photo_reference").getAsString();
+        /*JsonObject photoObject = photosElement.getAsJsonObject();*/
+        // System.out.println(photoRefString);
+        /*JsonObject photosObject = photosElement.getAsJsonObject();
+        JsonElement photoElement0 = photosObject.get("0");
+        JsonObject photoObject0 = photoElement0.getAsJsonObject();
+        String photoRefString = photoObject0.get("photo_reference").getAsString();*/
+
+        restaurant.setPhotoReference(photoRefString);
+
     }
 
     private static void parsePlaceId(JsonElement jsonRestaurant, Restaurant restaurant) {
