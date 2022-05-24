@@ -114,12 +114,28 @@ public class RestaurantParser {
     private static void parsePhotoReference(JsonElement jsonRestaurant, Restaurant restaurant) {
 
         JsonObject obj = jsonRestaurant.getAsJsonObject();
+        System.out.println("printar obj");
+        System.out.println(obj);
         JsonElement photosElement = obj.get("photos");
+        if(photosElement == null){
+            return;
+        }
+        System.out.println("printar photosElement");
+        System.out.println(photosElement);
         JsonArray photoArray = photosElement.getAsJsonArray();
+        System.out.println("printar photoArray");
+        System.out.println(photoArray);
         JsonElement element1 = photoArray.get(0);
+        System.out.println("printar element 1");
+        System.out.println(element1);
         JsonObject photoObj = element1.getAsJsonObject();
+        System.out.println("printar photoObj");
+        System.out.println(photoObj);
         String photoRefString = photoObj.get("photo_reference").getAsString();
-        /*JsonObject photoObject = photosElement.getAsJsonObject();*/
+        System.out.println("printar photoRefString");
+        System.out.println(photoRefString);
+
+        //JsonObject photoObject = photosElement.getAsJsonObject();*/
         // System.out.println(photoRefString);
         /*JsonObject photosObject = photosElement.getAsJsonObject();
         JsonElement photoElement0 = photosObject.get("0");

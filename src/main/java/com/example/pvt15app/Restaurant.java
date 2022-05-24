@@ -13,7 +13,7 @@ public class Restaurant {
     private List<String> foodTypes;
     private List<String> reviews;
     private String rating;
-    private String photoReference;
+    private String photoReference = "";
 
     public Restaurant() {
     }
@@ -121,7 +121,8 @@ public class Restaurant {
                 "latitude: " + latitude + " \n" +
                 "isOpen: " + isOpen + " \n" +
                 "address: " + address + " \n" +
-                "restaurant-id " + restaurantId;
+                "restaurant-id " + restaurantId + " \n" +
+                "photoref: " + photoReference;
 
     }
 
