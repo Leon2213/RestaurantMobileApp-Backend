@@ -19,11 +19,11 @@ public class RestaurantParser {
         restaurantList.clear();
         System.out.println(" inuti konstruktorn ");
 
-        String urlStringRestaurant = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurant&location="+latitude+","+longitude+"&radius=1000&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA";
-        String urlStringFastFood = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=fastfood&location="+latitude+","+longitude+"&radius=1000&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA";
-        String urlStringGrill = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=grill&location="+latitude+","+longitude+"&radius=1000&type=restaurant&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA";
-        String urlStringKebab = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=kebab&location="+latitude+","+longitude+"&radius=1000&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA";
-        String urlStringConvenienceStore = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=conveniencestore&location="+latitude+","+longitude+"&radius=1000&key=AIzaSyBmfU0WjQP9e5XMV09t1-UP-M0892jPmkA";
+        String urlStringRestaurant = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurant&location="+latitude+","+longitude+"&radius=1000&type=restaurant&key=AIzaSyCTAeAanf7zvaO-XuF1--LeRGunC1w6Puw";
+        String urlStringFastFood = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=fastfood&location="+latitude+","+longitude+"&radius=1000&type=restaurant&key=AIzaSyCTAeAanf7zvaO-XuF1--LeRGunC1w6Puw";
+        String urlStringGrill = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=grill&location="+latitude+","+longitude+"&radius=1000&type=restaurant&key=AIzaSyCTAeAanf7zvaO-XuF1--LeRGunC1w6Puw";
+        String urlStringKebab = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=kebab&location="+latitude+","+longitude+"&radius=1000&key=AIzaSyCTAeAanf7zvaO-XuF1--LeRGunC1w6Puw";
+        String urlStringConvenienceStore = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=conveniencestore&location="+latitude+","+longitude+"&radius=1000&key=AIzaSyCTAeAanf7zvaO-XuF1--LeRGunC1w6Puw";
         differentRestaurantTypesUrl.add(urlStringRestaurant);
         differentRestaurantTypesUrl.add(urlStringFastFood);
         differentRestaurantTypesUrl.add(urlStringGrill);
