@@ -25,17 +25,6 @@ public class RestaurantDataHolderController {
         return dataRepository.findAll();
     }
 
-  /*  @GetMapping(path="/findNearbyRestaurants")
-    public @ResponseBody Iterable<Restaurant> getAll(@RequestParam Double l, @RequestParam Double lat, @RequestParam String restaurantType){
-        // Gör anrop till googles API med rätt parametrar
-        // ta svaret och parsa det. Skapa object och lägg dom i en lista.
-        // Filtrera Listan efter:
-        // öppna restauranger.
-        // rätt mattyp.
-        // returnana listan.
-        return null;
-    }*/
-
     @GetMapping(path="/findnearbyrestaurants")
     public @ResponseBody String returnRestaurants (@RequestParam(value="latitude") Double latitude, @RequestParam (value="longitude") Double longitude, @RequestParam(value="type") String type){
         // Gör anrop till googles API med rätt parametrar
